@@ -1,3 +1,6 @@
 .venv
 venv
 *.toml
+*.sql
+*.sqlite
+*.sqlite3
