@@ -1,0 +1,500 @@
+/* =======================================================
+   ROOT COLORS
+======================================================= */
+
+:root{
+
+  --bg-main:#000;
+  --bg-secondary:#0a0a12;
+
+  --card-bg:rgba(18,18,24,0.82);
+
+  --task-bg:#151520;
+
+  --text:#d6d6ff;
+  --title:#9d9aff;
+
+  --button-bg:#1c1c2a;
+  --button-text:#9d9aff;
+
+  --glass-border:rgba(255,255,255,0.06);
+}
+
+/* =======================================================
+   LIGHT THEME
+======================================================= */
+
+body.light{
+
+  --bg-main:#f3f5ff;
+  --bg-secondary:#dfe5ff;
+
+  --card-bg:rgba(255,255,255,0.82);
+
+  --task-bg:#eef1ff;
+
+  --text:#4f5685;
+  --title:#6d6aff;
+
+  --button-bg:#ecefff;
+  --button-text:#6d6aff;
+
+  --glass-border:rgba(0,0,0,0.05);
+}
+
+/* =======================================================
+   RESET
+======================================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  overflow:hidden;
+
+  font-family:'Poppins',sans-serif;
+
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:var(--bg-main);
+
+  transition:
+  background 0.7s ease,
+  color 0.7s ease;
+}
+
+/* =======================================================
+   BACKGROUND
+======================================================= */
+
+#bg{
+
+  position:fixed;
+  inset:0;
+
+  z-index:0;
+
+  background:
+
+  radial-gradient(circle at top left,
+  rgba(255,255,255,0.06),
+  transparent 30%),
+
+  radial-gradient(circle at bottom right,
+  rgba(120,120,255,0.08),
+  transparent 30%),
+
+  linear-gradient(
+    135deg,
+    var(--bg-main),
+    #050505,
+    var(--bg-secondary)
+  );
+
+  transition:0.7s ease;
+}
+
+body.light #bg{
+
+  background:
+
+  radial-gradient(circle at top left,
+  rgba(255,255,255,0.7),
+  transparent 30%),
+
+  radial-gradient(circle at bottom right,
+  rgba(120,120,255,0.2),
+  transparent 30%),
+
+  linear-gradient(
+    135deg,
+    #f6f7ff,
+    #edf1ff,
+    #dfe5ff
+  );
+}
+
+canvas{
+
+  position:fixed;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  z-index:1;
+}
+
+/* =======================================================
+   CURSOR GLOW
+======================================================= */
+
+.glow{
+
+  position:absolute;
+
+  width:420px;
+  height:420px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(circle,
+  rgba(130,130,255,0.15),
+  transparent 70%);
+
+  pointer-events:none;
+
+  z-index:2;
+
+  transform:translate(-50%,-50%);
+}
+
+/* =======================================================
+   APP
+======================================================= */
+
+.app{
+
+  position:relative;
+
+  z-index:5;
+
+  width:390px;
+  min-height:590px;
+
+  padding:30px;
+
+  border-radius:30px;
+
+  background:var(--card-bg);
+
+  border:1px solid var(--glass-border);
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+  0 25px 60px rgba(0,0,0,0.25);
+
+  transition:
+  background 0.7s ease,
+  border 0.7s ease,
+  box-shadow 0.7s ease,
+  transform 0.4s ease;
+
+  animation:
+  float 6s ease-in-out infinite,
+  tilt 8s ease-in-out infinite;
+}
+
+/* =======================================================
+   GLOBAL TRANSITIONS
+======================================================= */
+
+h1,
+.task,
+.task span,
+.circle,
+.add-btn,
+.theme-btn,
+#bg,
+.task::before{
+
+  transition:
+  background 0.7s ease,
+  color 0.7s ease,
+  border 0.7s ease,
+  box-shadow 0.7s ease,
+  opacity 0.7s ease,
+  transform 0.35s ease;
+}
+
+/* =======================================================
+   ANIMATIONS
+======================================================= */
+
+@keyframes float{
+
+  0%,100%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+@keyframes tilt{
+
+  0%,100%{
+    transform:
+    translateY(0px)
+    rotate(-1deg);
+  }
+
+  50%{
+    transform:
+    translateY(-10px)
+    rotate(1deg);
+  }
+}
+
+/* =======================================================
+   TOP
+======================================================= */
+
+.top{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:28px;
+}
+
+h1{
+
+  color:var(--title);
+
+  font-size:34px;
+
+  font-weight:600;
+}
+
+/* =======================================================
+   ACTIONS
+======================================================= */
+
+.actions{
+
+  display:flex;
+  gap:12px;
+}
+
+/* =======================================================
+   BUTTONS
+======================================================= */
+
+button{
+
+  border:none;
+
+  cursor:pointer;
+}
+
+/* ADD BUTTON */
+
+.add-btn{
+
+  width:46px;
+  height:46px;
+
+  border-radius:14px;
+
+  font-size:28px;
+
+  background:var(--button-bg);
+  color:var(--button-text);
+}
+
+.add-btn:hover{
+
+  transform:
+  scale(1.12)
+  rotate(90deg);
+
+  background:#7b78ff;
+
+  color:white;
+}
+
+/* THEME BUTTON */
+
+.theme-btn{
+
+  width:46px;
+  height:46px;
+
+  border-radius:14px;
+
+  font-size:20px;
+
+  background:var(--button-bg);
+
+  color:var(--button-text);
+}
+
+.theme-btn:hover{
+
+  transform:scale(1.1);
+
+  background:#7b78ff;
+
+  color:white;
+}
+
+/* =======================================================
+   TASKS
+======================================================= */
+
+.task-list{
+
+  display:flex;
+  flex-direction:column;
+
+  gap:18px;
+}
+
+/* =======================================================
+   TASK
+======================================================= */
+
+.task{
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:22px;
+
+  border-radius:20px;
+
+  background:var(--task-bg);
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* SHINE */
+
+.task::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:-100%;
+  top:0;
+
+  width:100%;
+  height:100%;
+
+  background:
+  linear-gradient(
+  90deg,
+  transparent,
+  rgba(255,255,255,0.08),
+  transparent
+  );
+
+  transition:0.8s;
+}
+
+.task:hover::before{
+  left:100%;
+}
+
+.task:hover{
+
+  transform:
+  translateY(-5px)
+  scale(1.02);
+
+  box-shadow:
+  0 15px 35px rgba(123,120,255,0.12);
+}
+
+.task span{
+
+  color:var(--text);
+
+  font-size:15px;
+
+  font-weight:500;
+}
+
+/* =======================================================
+   CHECKBOX
+======================================================= */
+
+.circle{
+
+  width:28px;
+  height:28px;
+
+  border-radius:50%;
+
+  border:3px solid #8a84ff;
+
+  position:relative;
+}
+
+.task:hover .circle{
+
+  transform:scale(1.12);
+
+  background:#8a84ff22;
+}
+
+/* =======================================================
+   DONE
+======================================================= */
+
+.task.done{
+  opacity:0.7;
+}
+
+.task.done span{
+  text-decoration:line-through;
+}
+
+.task.done .circle{
+
+  background:#7f7eff;
+  border-color:#7f7eff;
+}
+
+.task.done .circle::after{
+
+  content:"✓";
+
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  color:white;
+
+  font-size:14px;
+}
+
+/* =======================================================
+   MOBILE
+======================================================= */
+
+@media(max-width:500px){
+
+  .app{
+    width:92%;
+    min-height:auto;
+  }
+
+  h1{
+    font-size:30px;
+  }
+}
