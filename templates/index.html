@@ -8,9 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css">
-
-</head>
+<link rel="stylesheet" href="/static/css/style.css"> </head>
 
 <body>
 
@@ -20,53 +18,42 @@
 
 <div class="glow" id="glow"></div>
 
-<!-- =====================================================
-     APP
-====================================================== -->
-
 <div class="app">
 
   <div class="top">
-
     <h1>ToDo List</h1>
-
     <div class="actions">
-
-      <button class="theme-btn" id="themeBtn">
+      <button class="theme-btn" id="themeBtn" type="button">
         ☀️
       </button>
-
-      <button class="add-btn">
-        +
-      </button>
-
     </div>
-
   </div>
 
-  <!-- TASKS -->
+  <form action="/add" method="POST" style="display: flex; gap: 12px; margin-bottom: 28px;">
+    <input type="text" name="title" placeholder="Добавить задачу..." required
+           style="flex: 1; padding: 12px 20px; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--task-bg); color: var(--text); font-family: inherit; outline: none;">
+    <button type="submit" class="add-btn">+</button>
+  </form>
 
   <div class="task-list">
 
-    <div class="task">
-      <span>Make the wireframe</span>
-      <div class="circle"></div>
-    </div>
+    {% for task in tasks %}
+    <div class="task {% if task[2] == 1 %}done{% endif %}">
 
-    <div class="task">
-      <span>Design logo for a company</span>
-      <div class="circle"></div>
-    </div>
+      <a href="/complete?id={{ task[0] }}" style="text-decoration: none; color: inherit; flex: 1; display: flex; align-items: center; justify-content: space-between;">
+        <span>{{ task[1] }}</span>
+        <div class="circle"></div>
+      </a>
 
-    <div class="task">
-      <span>Call with Kengo</span>
-      <div class="circle"></div>
-    </div>
+      <a href="/delete?id={{ task[0] }}" class="delete-link" title="Удалить"
+         style="margin-left: 15px; text-decoration: none; color: #ff5b5b; font-size: 18px; position: relative; z-index: 10;">
+         🗑️
+      </a>
 
-    <div class="task">
-      <span>Create onboarding screens</span>
-      <div class="circle"></div>
     </div>
+    {% else %}
+    <p style="color: var(--text); text-align: center; opacity: 0.6;">Список задач пуст</p>
+    {% endfor %}
 
   </div>
 
