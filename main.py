@@ -31,7 +31,7 @@ def index ():
 
 @app.route("/add", methods=["POST"])
 def add_task():
-    """Добавка новой задачм в БД"""
+    """Добавка новой задачм в БД с использованием пост."""
     title = request.form.get("title")
     if title and title.strip():
         conn = sqlite3.connect(DB_NAME)
