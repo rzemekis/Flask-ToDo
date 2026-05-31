@@ -1,29 +1,81 @@
-#ToDo лист написанный на HTML+CSS+JS+Python(Flask)
+# ToDo лист написанный на HTML+CSS+JS+Python(Flask)
 
-//для запуска из source кода:
+Для запуска из source кода:
+1. Скачайте архив кода
+2. Создайте venv:
+```bash
+python -m venv venv
 
-//скачайте архив кода
+```
 
-//создайте venv: python -m venv venv 
+3. Активируйте venv:
 
-//активируйте venv: venv/bin/activate.ps1
+* Для Windows (PowerShell):
 
-//установите нужные пакеты: pip install -r requirements.txt
+```powershell
+venv/bin/Activate.ps1
 
-//запустите код: python main.py
+```
 
+* Для Linux/macOS (Bash):
 
+```bash
+source venv/bin/activate
 
-#ToDo list made on HTML+CSS+JS+Python(Flask)
+```
 
-//To start from sources:
+4. Установите зависимости:
 
-//download zip with code
+```bash
+pip install -r requirements.txt
 
-//create venv: python -m venv venv
+```
 
-//activate the venv: venv/bin/activate.ps1
+5. Запустите код:
 
-//install requirements: pip install -r requirements.txt
+```bash
+python main.py
 
-//run the code: python main.py
+```
+
+# ToDo list made on HTML+CSS+JS+Python(Flask)
+
+To start from sources:
+
+1. Download zip with code
+2. Create venv:
+
+```bash
+python -m venv venv
+
+```
+
+3. Activate the venv:
+
+* For Windows (PowerShell):
+
+```powershell
+venv/bin/activate.ps1
+
+```
+
+* For Linux/macOS (Bash):
+
+```bash
+source venv/bin/activate
+
+```
+
+4. Install requirements:
+
+```bash
+pip install -r requirements.txt
+
+```
+
+5. Run the code:
+
+```bash
+python main.py
+
+```
