@@ -4,3 +4,4 @@ venv
 *.sql
 *.sqlite
 *.sqlite3
+.idea
