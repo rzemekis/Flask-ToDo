@@ -1,67 +1,55 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ToDo</title>
 
-<title>ToDo</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="static/css/style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
 
 <div id="bg"></div>
-
 <canvas id="canvas"></canvas>
-
 <div class="glow" id="glow"></div>
 
 <div class="app">
-
-  <div class="top">
-    <h1>ToDo List</h1>
-    <div class="actions">
-      <button class="theme-btn" id="themeBtn">
-        ☀️
-      </button>
+    <div class="top">
+        <h1>ToDo List</h1>
+        <div class="actions">
+            <button class="theme-btn" id="themeBtn">🌓</button>
+        </div>
     </div>
-  </div>
 
-  <form action="/add" method="POST" style="display: flex; gap: 12px; margin-bottom: 28px;">
-    <input type="text" name="title" placeholder="Добавить задачу..." required
-           style="flex: 1; padding: 12px 20px; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--task-bg); color: var(--text); font-family: inherit; outline: none;">
-    <button type="submit" class="add-btn">+</button>
-  </form>
+    <form action="/add" method="POST" style="display: flex; gap: 12px; margin-bottom: 28px;">
+        <input type="text" name="title" placeholder="Введите задачу..." required
+               style="flex: 1; padding: 12px 20px; border-radius: 14px; border: 1px solid var(--glass-border); background: var(--task-bg); color: var(--text); font-family: inherit; outline: none;">
+        <button type="submit" class="add-btn">+</button>
+    </form>
 
-  <div class="task-list">
+    <div class="task-list">
+        {% for task in tasks %}
+        <div class="task {% if task.completed == 1 %}done{% endif %}">
 
-    {% for task in tasks %}
-    <div class="task {% if task.completed == 1 %}done{% endif %}">
+            <a href="/complete?id={{ task.id }}" style="text-decoration: none; color: inherit; flex: 1; display: flex; align-items: center; justify-content: space-between;">
+                <span>{{ task.title }}</span>
+                <div class="circle"></div>
+            </a>
 
-      <a href="/complete?id={{ task.id }}" style="text-decoration: none; color: inherit; flex: 1; display: flex; align-items: center; justify-content: space-between;">
-        <span>{{ task.title }}</span>
-        <div class="circle"></div>
-      </a>
+            <a href="/delete?id={{ task.id }}" title="Удалить"
+               style="margin-left: 15px; text-decoration: none; color: #ff5b5b; font-size: 18px; position: relative; z-index: 10;">
+               🗑️
+            </a>
 
-      <a href="/delete?id={{ task.id }}" title="Удалить"
-         style="margin-left: 15px; text-decoration: none; color: #ff5b5b; font-size: 18px; position: relative; z-index: 10;">
-         🗑️
-      </a>
-
+        </div>
+        {% else %}
+        <p style="color: var(--text); text-align: center; opacity: 0.6; font-size: 14px;">Список задач пуст</p>
+        {% endfor %}
     </div>
-    {% else %}
-    <p style="color: var(--text); text-align: center; opacity: 0.6; font-size: 14px;">Список задач пуст</p>
-    {% endfor %}
-
-  </div>
-
 </div>
 
-<script src="static/js/script.js"></script>
-
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
